@@ -6,12 +6,19 @@
 <title>Ibrahimovic – Portofolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💼%3C/text%3E%3C/svg%3E">
 
+<script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("intro-active");setTimeout(function(){document.documentElement.classList.remove("intro-active")},8000)}</script>
+<noscript><style>.intro{display:none!important}</style></noscript>
 </head>
 <body>
+<div class="intro" aria-hidden="true">
+  <div class="intro-panel top"></div><div class="intro-panel bot"></div>
+  <div class="intro-center"><span class="intro-count"><b id="introNum">0</b>%</span><span class="intro-word">IBRAHIMOVIC</span></div>
+</div>
+<div class="progress" aria-hidden="true"></div>
 <div class="bg-text" aria-hidden="true">
   <div class="bg-row" style="--k:.12"><div class="bg-track" style="animation-duration:70s"><span>HTML&nbsp;CSS&nbsp;JAVASCRIPT&nbsp;&nbsp;&nbsp;&nbsp;HTML&nbsp;CSS&nbsp;JAVASCRIPT&nbsp;&nbsp;&nbsp;&nbsp;</span><span>HTML&nbsp;CSS&nbsp;JAVASCRIPT&nbsp;&nbsp;&nbsp;&nbsp;HTML&nbsp;CSS&nbsp;JAVASCRIPT&nbsp;&nbsp;&nbsp;&nbsp;</span></div></div>
   <div class="bg-row fill" style="--k:-.08"><div class="bg-track rev" style="animation-duration:95s"><span>WARUNG&nbsp;HIJAU&nbsp;/&nbsp;WEIGHT&nbsp;CUT&nbsp;TRACKER&nbsp;&nbsp;&nbsp;&nbsp;</span><span>WARUNG&nbsp;HIJAU&nbsp;/&nbsp;WEIGHT&nbsp;CUT&nbsp;TRACKER&nbsp;&nbsp;&nbsp;&nbsp;</span></div></div>
@@ -19,7 +26,7 @@
   <div class="bg-row fill" style="--k:-.12"><div class="bg-track rev" style="animation-duration:90s"><span>PROGRAMMER&nbsp;&nbsp;&nbsp;&nbsp;PROGRAMMER&nbsp;&nbsp;&nbsp;&nbsp;</span><span>PROGRAMMER&nbsp;&nbsp;&nbsp;&nbsp;PROGRAMMER&nbsp;&nbsp;&nbsp;&nbsp;</span></div></div>
 </div>
 <div class="wrap">
-  <header class="top">
+  <header class="top rise">
     <strong>ILJ</strong>
     <nav aria-label="Navigasi utama">
       <a href="#proyek">Proyek</a><a href="#tentang">Tentang</a><a href="#kontak">Kontak</a>
@@ -29,15 +36,15 @@
   <main>
     <div class="hero">
       <h1 id="name" aria-label="Ibrahimovic">Ibrahimovic</h1>
-      <p>Programmer yang senang membangun website dan aplikasi yang sederhana, cepat, dan nyaman digunakan.</p>
-      <div class="btns">
+      <p class="rise">Programmer yang senang membangun website dan aplikasi yang sederhana, cepat, dan nyaman digunakan.</p>
+      <div class="btns rise">
         <a class="btn primary" href="#proyek">Lihat proyek</a>
         <a class="btn" href="#kontak">Hubungi aku</a>
       </div>
     </div>
 
     <section id="proyek">
-      <h2>Proyek</h2>
+      <h2 class="reveal">Proyek</h2>
       <div class="filters" role="group" aria-label="Filter proyek">
         <button type="button" data-filter="all" aria-pressed="true">Semua</button>
         <button type="button" data-filter="web" aria-pressed="false">Web</button>
@@ -62,7 +69,7 @@
             <span class="slab" aria-hidden="true"></span><figure class="phone a" style="--i:0;--r:-7deg;--d:18;--e:44"><button class="zoom" type="button" aria-label="Perbesar gambar: Beranda: banner, kategori, dan menu pilihan"><img src="warung-1-beranda.jpg" width="720" height="1360" alt="Beranda: banner, kategori, dan menu pilihan" loading="lazy"></button></figure><figure class="phone b" style="--i:1;--r:6deg;--d:-14;--e:-34"><button class="zoom" type="button" aria-label="Perbesar gambar: Mode gelap: tombol Pesan lewat WhatsApp"><img src="warung-3-pesan.jpg" width="720" height="1357" alt="Mode gelap: tombol Pesan lewat WhatsApp" loading="lazy"></button></figure>
           </div>
         </article>
-        <article class="project reveal" data-tag="tool">
+        <article class="project rev reveal" data-tag="tool">
           <div class="p-text">
             <div class="p-head">
               <span class="p-num" aria-hidden="true">02</span>
@@ -83,33 +90,80 @@
     </section>
 
     <section id="tentang">
-      <h2>Tentang</h2>
-      <div class="about">
-        <div>
-          <p>Halo, aku Ibrahimovic. Aku belajar pemrograman di SMK Cendika Bangsa, lalu melanjutkannya secara otodidak. Saat ini aku sedang mencari pekerjaan sebagai programmer dan terus membangun proyek nyata, seperti Warung Hijau dan Weight Cut Tracker.</p>
-          <p>Di luar pemrograman, aku menyukai mixed martial arts, sepak bola, berenang, bermain game, dan belajar bahasa Inggris.</p>
+      <h2 class="reveal">Tentang</h2>
+      <div class="devwin scene reveal">
+        <div class="pane code-pane">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>tentang.js</span></div>
+          <div class="code" role="group" aria-label="Kode: data tentang Ibrahimovic">
+          <div class="ln"><span class="no">1</span><code style="--ch:25;--t:0.150s;--d:0.500s"><span class="c">// Halo, aku Ibrahimovic.</span></code></div>
+          <div class="ln"><span class="no">2</span><code style="--ch:33;--t:0.198s;--d:0.700s"><span class="c">// Belajar di SMK Cendika Bangsa,</span></code></div>
+          <div class="ln"><span class="no">3</span><code style="--ch:31;--t:0.186s;--d:0.948s"><span class="c">// lalu lanjut secara otodidak.</span></code></div>
+          <div class="ln"><span class="no">4</span><code style="--ch:1;--t:0.006s;--d:1.184s">&nbsp;</code></div>
+          <div class="ln"><span class="no">5</span><code style="--ch:21;--t:0.126s;--d:1.240s"><span class="k">const</span> <span class="v">ibrahimovic</span> = {</code></div>
+          <div class="ln"><span class="no">6</span><code style="--ch:32;--t:0.192s;--d:1.416s">  sekolah: <span class="s">&quot;SMK Cendika Bangsa&quot;</span>,</code></div>
+          <div class="ln"><span class="no">7</span><code style="--ch:22;--t:0.132s;--d:1.658s">  belajar: <span class="s">&quot;otodidak&quot;</span>,</code></div>
+          <div class="ln"><span class="no">8</span><code style="--ch:10;--t:0.060s;--d:1.840s">  skill: [</code></div>
+          <div class="ln"><span class="no">9</span><code style="--ch:11;--t:0.066s;--d:1.950s">    <span class="s">&quot;HTML&quot;</span>,</code></div>
+          <div class="ln"><span class="no">10</span><code style="--ch:10;--t:0.060s;--d:2.066s">    <span class="s">&quot;CSS&quot;</span>,</code></div>
+          <div class="ln"><span class="no">11</span><code style="--ch:17;--t:0.102s;--d:2.176s">    <span class="s">&quot;JavaScript&quot;</span>,</code></div>
+          <div class="ln"><span class="no">12</span><code style="--ch:24;--t:0.144s;--d:2.328s">    <span class="s">&quot;Responsive design&quot;</span>,</code></div>
+          <div class="ln"><span class="no">13</span><code style="--ch:4;--t:0.024s;--d:2.522s">  ],</code></div>
+          <div class="ln"><span class="no">14</span><code style="--ch:9;--t:0.054s;--d:2.596s">  hobi: [</code></div>
+          <div class="ln"><span class="no">15</span><code style="--ch:25;--t:0.150s;--d:2.700s">    <span class="s">&quot;Mixed martial arts&quot;</span>,</code></div>
+          <div class="ln"><span class="no">16</span><code style="--ch:17;--t:0.102s;--d:2.900s">    <span class="s">&quot;Sepak bola&quot;</span>,</code></div>
+          <div class="ln"><span class="no">17</span><code style="--ch:15;--t:0.090s;--d:3.052s">    <span class="s">&quot;Berenang&quot;</span>,</code></div>
+          <div class="ln"><span class="no">18</span><code style="--ch:19;--t:0.114s;--d:3.192s">    <span class="s">&quot;Bermain game&quot;</span>,</code></div>
+          <div class="ln"><span class="no">19</span><code style="--ch:29;--t:0.174s;--d:3.356s">    <span class="s">&quot;Belajar bahasa Inggris&quot;</span>,</code></div>
+          <div class="ln"><span class="no">20</span><code style="--ch:4;--t:0.024s;--d:3.580s">  ],</code></div>
+          <div class="ln"><span class="no">21</span><code style="--ch:11;--t:0.066s;--d:3.654s">  proyek: [</code></div>
+          <div class="ln"><span class="no">22</span><code style="--ch:19;--t:0.114s;--d:3.770s">    <span class="s">&quot;Warung Hijau&quot;</span>,</code></div>
+          <div class="ln"><span class="no">23</span><code style="--ch:25;--t:0.150s;--d:3.934s">    <span class="s">&quot;Weight Cut Tracker&quot;</span>,</code></div>
+          <div class="ln"><span class="no">24</span><code style="--ch:4;--t:0.024s;--d:4.134s">  ],</code></div>
+          <div class="ln"><span class="no">25</span><code style="--ch:31;--t:0.186s;--d:4.208s">  cari: <span class="s">&quot;pekerjaan programmer&quot;</span>,</code></div>
+          <div class="ln"><span class="no">26</span><code style="--ch:34;--t:0.204s;--d:4.444s">  terus: <span class="s">&quot;membangun proyek nyata&quot;</span>,</code></div>
+          <div class="ln"><span class="no">27</span><code style="--ch:2;--t:0.012s;--d:4.698s">};</code></div>
+          <div class="ln"><span class="no">28</span><code style="--ch:1;--t:0.006s;--d:4.760s">&nbsp;</code></div>
+          <div class="ln"><span class="no">29</span><code style="--ch:32;--t:0.192s;--d:4.816s"><span class="pr">&gt;</span> <span class="v">console</span>.log(ibrahimovic.cari);</code></div>
+          <div class="ln"><span class="no">30</span><code style="--ch:21;--t:0.126s;--d:5.058s"><span class="o">pekerjaan programmer</span><span class="caret"></span></code></div>
+          </div>
         </div>
-        <div>
-          <ul class="skills" aria-label="Keahlian">
-            <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Responsive design</li>
-          </ul>
+        <div class="pane preview-pane">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>pratinjau</span></div>
+          <div class="preview">
+            <p class="lead">Halo, aku Ibrahimovic. Aku belajar pemrograman di SMK Cendika Bangsa, lalu melanjutkannya secara <strong>otodidak</strong>. Saat ini aku sedang <strong>mencari pekerjaan sebagai programmer</strong> dan terus membangun proyek nyata, seperti Warung Hijau dan Weight Cut Tracker.</p>
+            <p class="label">Skill</p>
+            <ul class="chips" aria-label="Keahlian"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Responsive design</li></ul>
+            <p class="label">Di luar pemrograman</p>
+            <ul class="chips" aria-label="Hobi"><li>Mixed martial arts</li><li>Sepak bola</li><li>Berenang</li><li>Bermain game</li><li>Belajar bahasa Inggris</li></ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="kontak" class="contact">
-      <h2>Kontak</h2>
-      <p>Tertarik bekerja sama atau ingin bertanya? Silakan kirim email, aku akan membalasnya secepat mungkin.</p>
-      <a class="mail" href="mailto:jayvano655@gmail.com">jayvano655@gmail.com</a>
-      <div class="btns">
-        <button class="btn" type="button" id="copy">Salin email</button><a class="btn" href="https://wa.me/6281331708609" target="_blank" rel="noopener">WhatsApp</a><a class="btn" href="https://github.com/jayvano655-create" target="_blank" rel="noopener">GitHub</a><span class="toast" id="toast" role="status"></span>
+    <section id="kontak">
+      <h2 class="reveal">Kontak</h2>
+      <div class="chat reveal">
+        <div class="talk">
+          <div class="bubble" style="--b:.3s"><span class="typing" aria-hidden="true"><i></i><i></i><i></i></span><p>Halo! Tertarik bekerja sama atau ingin bertanya? Tulis pesanmu, aku akan membalasnya secepat mungkin.</p></div>
+          <div class="alt">
+            <a class="mail-link" href="mailto:jayvano655@gmail.com">jayvano655@gmail.com</a>
+            <div class="alt-btns"><button class="btn" type="button" id="copy">Salin email</button><a class="btn" href="https://github.com/jayvano655-create" target="_blank" rel="noopener">GitHub</a><span class="toast" id="toast" role="status"></span></div>
+          </div>
+        </div>
+        <div class="composer">
+          <label class="sr" for="msg">Pesan untuk Ibrahimovic</label>
+          <textarea id="msg" rows="5" placeholder="Tulis pesanmu di sini..."></textarea>
+          <div class="send">
+            <button class="btn primary" type="button" id="sendWa">Kirim lewat WhatsApp &#8599;</button>
+            <button class="btn" type="button" id="sendMail">Kirim lewat email</button>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer>
     <span id="year"></span> Ibrahimovic. Dibuat dengan HTML, CSS, dan JavaScript.
-    <button class="btn" type="button" id="theme" style="margin-left:1rem;padding:.3rem .8rem">Ganti tema</button>
   </footer>
 </div>
 

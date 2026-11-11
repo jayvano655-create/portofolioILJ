@@ -2,39 +2,73 @@
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-  // Efek ketebalan huruf mengikuti kursor pada nama
+  // Nama: pecah jadi huruf (animasi masuk + efek ketebalan mengikuti kursor)
   var h1 = document.getElementById("name");
-  if (h1 && fine && !reduce) {
+  if (h1 && !reduce) {
     var text = h1.textContent;
     h1.textContent = "";
     var letters = [];
     for (var i = 0; i < text.length; i++) {
       var s = document.createElement("span");
       s.setAttribute("aria-hidden", "true");
+      s.style.setProperty("--n", i);
       s.textContent = text[i] === " " ? "\u00A0" : text[i];
       h1.appendChild(s);
       letters.push(s);
     }
-    var base = 300;
-    letters.forEach(function(l){ l.style.fontVariationSettings = '"wght" ' + base; });
-    window.addEventListener("pointermove", function(e){
-      letters.forEach(function(l){
-        var r = l.getBoundingClientRect();
-        var dx = e.clientX - (r.left + r.width / 2);
-        var dy = e.clientY - (r.top + r.height / 2);
-        var d = Math.sqrt(dx * dx + dy * dy);
-        var w = Math.max(base, 800 - d * 1.6);
-        l.style.fontVariationSettings = '"wght" ' + Math.round(w);
+    if (fine) {
+      var base = 300;
+      letters.forEach(function(l){ l.style.fontVariationSettings = '"wght" ' + base; });
+      window.addEventListener("pointermove", function(e){
+        letters.forEach(function(l){
+          var r = l.getBoundingClientRect();
+          var dx = e.clientX - (r.left + r.width / 2);
+          var dy = e.clientY - (r.top + r.height / 2);
+          var d = Math.sqrt(dx * dx + dy * dy);
+          var w = Math.max(base, 800 - d * 1.6);
+          l.style.fontVariationSettings = '"wght" ' + Math.round(w);
+        });
       });
-    });
+    }
+  }
+
+  // Intro saat halaman dibuka
+  var rootEl = document.documentElement;
+  var intro = document.querySelector(".intro");
+  if (intro && rootEl.classList.contains("intro-active")) {
+    rootEl.classList.add("intro-lock");
+    var numEl = document.getElementById("introNum");
+    var t0 = performance.now(), dur = 1700, finished = false;
+    var finish = function(){
+      if (finished) return;
+      finished = true;
+      intro.classList.add("done");
+      rootEl.classList.add("loaded");
+      rootEl.classList.remove("intro-lock");
+      setTimeout(function(){ rootEl.classList.remove("intro-active"); }, 1100);
+    };
+    var step = function(now){
+      if (finished) return;
+      var k = Math.min(1, (now - t0) / dur);
+      var e = 1 - Math.pow(1 - k, 3);
+      intro.style.setProperty("--p", (e * 100).toFixed(1) + "%");
+      numEl.textContent = Math.round(e * 100);
+      if (k < 1) requestAnimationFrame(step); else setTimeout(finish, 250);
+    };
+    requestAnimationFrame(step);
+    intro.addEventListener("click", finish);
+  } else {
+    rootEl.classList.add("loaded");
   }
 
   // Parallax: teks background dan foto proyek bergerak saat scroll / kursor
-  var stages = document.querySelectorAll(".stage");
+  var stages = document.querySelectorAll(".stage, .scene");
   if (!reduce) {
     var sRoot = document.documentElement, sTick = false;
     var updateScroll = function(){
       sRoot.style.setProperty("--sy", window.scrollY);
+      var maxY = document.documentElement.scrollHeight - window.innerHeight;
+      sRoot.style.setProperty("--prog", maxY > 0 ? (window.scrollY / maxY).toFixed(4) : 0);
       var vh = window.innerHeight;
       stages.forEach(function(st){
         var r = st.getBoundingClientRect();
@@ -118,6 +152,37 @@
     });
   }
 
+  // Tombol magnetik (sedikit tertarik ke arah kursor)
+  if (!reduce) {
+    if (fine) {
+      document.querySelectorAll(".btn, .filters button").forEach(function(el){
+        el.addEventListener("pointermove", function(e){
+          var r = el.getBoundingClientRect();
+          var dx = (e.clientX - (r.left + r.width / 2)) * 0.3;
+          var dy = (e.clientY - (r.top + r.height / 2)) * 0.3;
+          el.style.translate = dx.toFixed(1) + "px " + dy.toFixed(1) + "px";
+        });
+        el.addEventListener("pointerleave", function(){ el.style.translate = ""; });
+      });
+    }
+  }
+
+  // Kolom pesan di Kontak
+  var msg = document.getElementById("msg");
+  if (msg) {
+    document.querySelectorAll("[data-fill]").forEach(function(b){
+      b.addEventListener("click", function(){ msg.value = b.getAttribute("data-fill"); msg.focus(); });
+    });
+    var getText = function(){ return msg.value.trim() || "Halo Ibrahimovic, aku melihat portofoliomu."; };
+    var wa = document.getElementById("sendWa"), ml = document.getElementById("sendMail");
+    if (wa) wa.addEventListener("click", function(){
+      window.open("https://wa.me/6281331708609?text=" + encodeURIComponent(getText()), "_blank", "noopener");
+    });
+    if (ml) ml.addEventListener("click", function(){
+      window.location.href = "mailto:jayvano655@gmail.com?subject=" + encodeURIComponent("Halo dari portofolio") + "&body=" + encodeURIComponent(getText());
+    });
+  }
+
   // Salin email
   var toast = document.getElementById("toast");
   document.getElementById("copy").addEventListener("click", function(){
@@ -126,13 +191,6 @@
     try {
       navigator.clipboard.writeText(mail).then(function(){ done("Email disalin"); }, function(){ done("Gagal menyalin"); });
     } catch (err) { done("Gagal menyalin"); }
-  });
-
-  // Tema
-  var root = document.documentElement;
-  document.getElementById("theme").addEventListener("click", function(){
-    var dark = getComputedStyle(root).getPropertyValue("--bg").trim().toUpperCase() === "#000000";
-    root.setAttribute("data-theme", dark ? "light" : "dark");
   });
 
   document.getElementById("year").textContent = "© " + new Date().getFullYear();
